@@ -66,3 +66,6 @@ jobs:
           app-name: 'system-sales-backend'
           slot-name: 'Production'
           package: .
+          app-name: 'system-sales-backend'
+          slot-name: 'Production'
+          package: .
