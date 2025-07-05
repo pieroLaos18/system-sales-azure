@@ -8,7 +8,7 @@ jest.mock('../middleware/authenticate', () => (req, res, next) => {
 });
 
 // Mock pool.query para todas las rutas
-jest.mock('../db', () => ({
+jest.mock('../config/db', () => ({
   query: jest.fn()
 }));
 const pool = require('../config/db');

@@ -2,7 +2,7 @@ const request = require('supertest');
 const express = require('express');
 
 // Mock pool.query
-jest.mock('../db', () => ({
+jest.mock('../config/db', () => ({
   query: jest.fn()
 }));
 const pool = require('../config/db');

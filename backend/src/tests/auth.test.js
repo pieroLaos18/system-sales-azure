@@ -2,7 +2,7 @@ const request = require('supertest');
 const express = require('express');
 
 // Mock pool.query y bcrypt.hash
-jest.mock('../db', () => ({
+jest.mock('../config/db', () => ({
   query: jest.fn()
 }));
 jest.mock('bcrypt', () => ({

@@ -3,7 +3,7 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 
 // Mock pool.query
-jest.mock('../db', () => ({
+jest.mock('../config/db', () => ({
   query: jest.fn()
 }));
 const pool = require('../config/db');

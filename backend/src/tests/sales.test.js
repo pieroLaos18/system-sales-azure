@@ -4,7 +4,7 @@ const salesRouter = require('../routes/sales');
 const pool = require('../config/db');
 
 
-jest.mock('../db');
+jest.mock('../config/db');
 jest.mock('../middleware/authenticate', () => (req, res, next) => {
   req.user = { nombre: 'TestUser', correo_electronico: 'test@mail.com' };
   next();
