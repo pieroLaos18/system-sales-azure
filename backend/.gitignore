@@ -5,6 +5,8 @@
 
 # Node modules
 node_modules/
+*.tar.gz
+
 
 # Entornos y secretos
 .env
