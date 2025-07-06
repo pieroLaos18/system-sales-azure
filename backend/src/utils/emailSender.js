@@ -4,7 +4,7 @@ const connectionString = process.env.AZURE_COMMUNICATION_CONNECTION_STRING;
 const emailClient = new EmailClient(connectionString);
 
 // Cambia esto por el email de tu dominio de Azure (puedes verlo en el portal de Azure)
-const SENDER_EMAIL = "DoNotReply@d3578ea4-9778-43d7-b08e-b282db946cba.azurecomm.net";
+const SENDER_EMAIL = "DoNotReply@ccb81280-9d36-4d77-9b0f-da30a6396a2d.azurecomm.net";
 
 // ✔ Función para recuperación de contraseña (ya la tienes)
 const enviarCorreoRecuperacion = async (email, token) => {

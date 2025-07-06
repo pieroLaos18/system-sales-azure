@@ -1,4 +1,6 @@
 const mysql = require('mysql2/promise');
+const fs = require('fs');
+const path = require('path');
 require('dotenv').config();
 
 // Validación de variables de entorno requeridas
@@ -9,28 +11,28 @@ for (const key of requiredEnv) {
   }
 }
 
-// Crear el pool de conexiones con opciones adicionales
-const pool = mysql.createPool({
+// Configuración de la conexión a la base de datos
+const dbConfig = {
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  waitForConnections: true,
-  connectionLimit: 10,     // Límite de conexiones en el pool
-  queueLimit: 0            // Sin límite de espera
-});
+  port: process.env.DB_PORT || 3306,
+};
 
-// Verificación opcional de conexión
-(async () => {
-  try {
-    const connection = await pool.getConnection();
-    await connection.ping(); // Verifica que la conexión funcione
-    console.log('✅ Conexión a la base de datos establecida correctamente.');
-    connection.release();
-  } catch (error) {
-    console.error('❌ Error al conectar con la base de datos:', error.message);
-    process.exit(1); // Finaliza la app si la conexión falla
-  }
-})();
+// Habilitar SSL si se especifica en las variables de entorno
+if (process.env.DB_SSL === 'true') {
+  dbConfig.ssl = {
+    ca: [
+      fs.readFileSync(path.join(__dirname, 'BaltimoreCyberTrustRoot.crt.pem'), 'utf8'),
+      fs.readFileSync(path.join(__dirname, 'DigiCertGlobalRootCA.crt.pem'), 'utf8'),
+      fs.readFileSync(path.join(__dirname, 'DigiCertGlobalRootG2.crt.pem'), 'utf8')
+    ],
+    rejectUnauthorized: false // Solo para pruebas locales
+  };
+}
+
+// Crear el pool de conexiones a la base de datos
+const pool = mysql.createPool(dbConfig);
 
 module.exports = pool;

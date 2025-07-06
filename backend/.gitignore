@@ -1,0 +1,25 @@
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+
+# Node modules
+node_modules/
+
+# Entornos y secretos
+.env
+
+# Archivos temporales y logs
+*.log
+npm-debug.log*
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Configuración de IDE
+.vscode/
+.idea/
+
+# Cobertura y pruebas
+coverage/
+__tests__/

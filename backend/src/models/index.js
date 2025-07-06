@@ -1,11 +1,11 @@
 // Configuración y exportación de modelos Sequelize para la base de datos
 
 import { Sequelize } from 'sequelize';
-import config from '../config/database.js';
+import pool from '../config/db.js';
 
 // Inicializa la instancia de Sequelize con la configuración
-const sequelize = new Sequelize(config.database, config.username, config.password, {
-  host: config.host,
+const sequelize = new Sequelize(pool.database, pool.username, pool.password, {
+  host: pool.host,
   dialect: 'mysql',
 });
 
